@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="1.strcpy和memcpystrcpy和mempcy都是标准C库函数，它们有下面的特点。strcpy提供了字符串的复制。即strcpy只用于字符串复制，并且它不仅复制字符串内容之外，还会复制字符串的结束符。memcpy提供了一般内存的复制。即memcpy对于需要复制的内容没有限制，因此用户更广。strcpy的函数原型：char strcpy(char dest, const char src)">
+<meta name="description" content="strcpy和memcpystrcpy和mempcy都是标准C库函数，它们有下面的特点。strcpy提供了字符串的复制。即strcpy只用于字符串复制，并且它不仅复制字符串内容之外，还会复制字符串的结束符。memcpy提供了一般内存的复制。即memcpy对于需要复制的内容没有限制，因此用户更广。strcpy的函数原型：char strcpy(char dest, const char src);m">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试问题汇总">
 <meta property="og:url" content="http://chickenrun.top/2018/09/01/面试问题汇总/index.html">
 <meta property="og:site_name" content="ChickenRun">
-<meta property="og:description" content="1.strcpy和memcpystrcpy和mempcy都是标准C库函数，它们有下面的特点。strcpy提供了字符串的复制。即strcpy只用于字符串复制，并且它不仅复制字符串内容之外，还会复制字符串的结束符。memcpy提供了一般内存的复制。即memcpy对于需要复制的内容没有限制，因此用户更广。strcpy的函数原型：char strcpy(char dest, const char src)">
+<meta property="og:description" content="strcpy和memcpystrcpy和mempcy都是标准C库函数，它们有下面的特点。strcpy提供了字符串的复制。即strcpy只用于字符串复制，并且它不仅复制字符串内容之外，还会复制字符串的结束符。memcpy提供了一般内存的复制。即memcpy对于需要复制的内容没有限制，因此用户更广。strcpy的函数原型：char strcpy(char dest, const char src);m">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-01T09:38:52.099Z">
+<meta property="og:updated_time" content="2018-09-09T03:01:44.995Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试问题汇总">
-<meta name="twitter:description" content="1.strcpy和memcpystrcpy和mempcy都是标准C库函数，它们有下面的特点。strcpy提供了字符串的复制。即strcpy只用于字符串复制，并且它不仅复制字符串内容之外，还会复制字符串的结束符。memcpy提供了一般内存的复制。即memcpy对于需要复制的内容没有限制，因此用户更广。strcpy的函数原型：char strcpy(char dest, const char src)">
+<meta name="twitter:description" content="strcpy和memcpystrcpy和mempcy都是标准C库函数，它们有下面的特点。strcpy提供了字符串的复制。即strcpy只用于字符串复制，并且它不仅复制字符串内容之外，还会复制字符串的结束符。memcpy提供了一般内存的复制。即memcpy对于需要复制的内容没有限制，因此用户更广。strcpy的函数原型：char strcpy(char dest, const char src);m">
 
 
 
@@ -293,8 +293,8 @@
             
   			<span class="post-updated">
     			&nbsp; | &nbsp; 更新于
-    		    <time itemprop="dateUpdated" datetime="2018-09-01T02:38:52-07:00" content="2018-09-01">
-                2018-09-01
+    		    <time itemprop="dateUpdated" datetime="2018-09-08T20:01:44-07:00" content="2018-09-09">
+                2018-09-09
                 </time>
   		  </span>
 		  
@@ -328,10 +328,56 @@
       
 
       
-        <h1 id="1-strcpy和memcpy"><a href="#1-strcpy和memcpy" class="headerlink" title="1.strcpy和memcpy"></a>1.strcpy和memcpy</h1><p>strcpy和mempcy都是标准C库函数，它们有下面的特点。<br>strcpy提供了字符串的复制。即strcpy只用于字符串复制，并且它不仅复制字符串内容之外，还会复制字符串的结束符。<br>memcpy提供了一般内存的复制。即memcpy对于需要复制的内容没有限制，因此用户更广。<br>strcpy的函数原型：<br>char <em>strcpy(char </em>dest, const char<em> src);<br>memcpy的函数运行<br>char </em>memcpy(void <em>dest, const void </em>src, size_t count);</p>
+        <h1 id="strcpy和memcpy"><a href="#strcpy和memcpy" class="headerlink" title="strcpy和memcpy"></a>strcpy和memcpy</h1><p>strcpy和mempcy都是标准C库函数，它们有下面的特点。<br>strcpy提供了字符串的复制。即strcpy只用于字符串复制，并且它不仅复制字符串内容之外，还会复制字符串的结束符。<br>memcpy提供了一般内存的复制。即memcpy对于需要复制的内容没有限制，因此用户更广。<br>strcpy的函数原型：<br>char <em>strcpy(char </em>dest, const char<em> src);<br>memcpy的函数运行<br>char </em>memcpy(void <em>dest, const void </em>src, size_t count);</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*strcpy函数实现*/</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strcpy</span><span class="params">(<span class="keyword">char</span> * dest, <span class="keyword">const</span> <span class="keyword">char</span> * src)</span> <span class="comment">// 实现src到dest的复制</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">　　<span class="keyword">if</span> ((src == <span class="literal">NULL</span>) || (dest == <span class="literal">NULL</span>)) <span class="comment">//判断参数src和dest的有效性</span></span><br><span class="line">　　&#123;</span><br><span class="line"> </span><br><span class="line">　　　　　　<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">　　&#125;</span><br><span class="line">　　<span class="keyword">char</span> *strdest = dest;        <span class="comment">//保存目标字符串的首地址</span></span><br><span class="line">　　<span class="keyword">while</span> ((*strDest++ = *strSrc++)!=<span class="string">'\0'</span>);<span class="comment">//把src字符串的内容复制到dest下</span></span><br><span class="line">　　<span class="keyword">return</span> strdest;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*memcpy函数实现*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memcpy</span><span class="params">(<span class="keyword">void</span> *memTo,<span class="keyword">const</span> <span class="keyword">void</span> *memFrom,<span class="keyword">size_t</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">　　<span class="keyword">if</span>((memTo == <span class="literal">NULL</span>) || (memFrom == <span class="literal">NULL</span>)) <span class="comment">//memTo和memFrom必须有效</span></span><br><span class="line">         <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">　　<span class="keyword">char</span> *tempFrom = (<span class="keyword">char</span> *)memFrom;            <span class="comment">//保存memFrom首地址</span></span><br><span class="line">　　<span class="keyword">char</span> *tempTo = (<span class="keyword">char</span> *)memTo;                 <span class="comment">//保存memTo首地址     </span></span><br><span class="line">　　<span class="keyword">while</span>(size -- &gt; <span class="number">0</span>)                <span class="comment">//循环size次，复制memFrom的值到memTo中</span></span><br><span class="line">       　　*tempTo++ = *tempFrom++ ; </span><br><span class="line">　　<span class="keyword">return</span> memTo;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*strncpy函数实现*/</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *  <span class="title">strncpy</span><span class="params">(<span class="keyword">char</span> *dest, <span class="keyword">const</span> <span class="keyword">char</span> *src, <span class="keyword">size_t</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">size_t</span> i;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n &amp;&amp; src[i] != <span class="string">'\0'</span>; i++)</span><br><span class="line">        dest[i] = src[i];</span><br><span class="line">    <span class="keyword">for</span> ( ; i &lt; n; i++)</span><br><span class="line">        dest[i] = <span class="string">'\0'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>strcpy和memcpy的相同点：<br>    都是可以实现字符串拷贝的功能<br>strcpy和memcpy的不同点：<br>（1）实现功能不同。strcpy只能复制字符串，mempcy可以进行内存块间的拷贝，即可以拷贝存在内存块中的任意内容，例如字符数组、整型、结构体、类等；<br>（2）复制的方法不同。strcpy不需要指定长度，它遇到被复制字符的串结束符”\0”才结束，所以容易溢出。memcpy则是根据其第3个参数决定复制的长度。<br>（3）执行效率不同。memcpy最高，strcpy次之。</p>
 <p>关于memcpy的说明，这个网站说明得很详细，就是在memcpy的函数实现是需要考虑到内存重叠的问题。<br><a href="https://www.cnblogs.com/GarfieldEr007/p/5594524.html" target="_blank" rel="noopener">https://www.cnblogs.com/GarfieldEr007/p/5594524.html</a></p>
+<h1 id="信号量，信号，互斥锁的区别"><a href="#信号量，信号，互斥锁的区别" class="headerlink" title="信号量，信号，互斥锁的区别"></a>信号量，信号，互斥锁的区别</h1><p>信号（signal）：是一种处理异步事件的方式。信号是比较复杂的通信方式，用于通知接收进程有某种事件发生，除了用于进程外，还可以发送信号给进程本身。Linux除了支持unix早期的信号语义函数，还支持语义函数符合posix.1标准的信号函数sigaction</p>
+<p>信号量(semaphone)，进程间通信处理同步互斥的机制，是在多线程环境下使用的一种设施，它负责各个线程，以保证它们能够正确合理的使用公共资源。</p>
+<p>互斥量和信号量的区别：<br>（1）互斥量的加锁和解锁必须由同一种线程完成，信号量可以由一线程释放，另一个线程得到。<br>（2）互斥量用于线程的互斥，信号量用于线程的同步。<br>（3）互斥量：是指某一资源同时允许一个访问者对其进行访问，具有唯一性和排他性。但互斥无法限制访问者对资源的访问顺序，即访问是无序的。<br>    同步：是指在互斥的基础上（大多数基础），通过其它机制实现访问者对资源的有序访问。大多数情况下，同步已经实现互斥，特别是所有写入资源的情况下必须是互斥的。少数情况是指允许多个访问者同时访问资源。<br>（4）互斥量只能是0或1，信号量可以为非负整数。</p>
+<h1 id="共享内存的使用"><a href="#共享内存的使用" class="headerlink" title="共享内存的使用"></a>共享内存的使用</h1><p>（1）shmget: 创建共享内存<br>（2）shmat:  启动共享内存<br>（3）shmdt:  从当前进程中分离<br>（4）shmctl: 控制共享内存</p>
+<h1 id="socket函数"><a href="#socket函数" class="headerlink" title="socket函数"></a>socket函数</h1><ol>
+<li>客户端</li>
+</ol>
+<ul>
+<li>socket</li>
+<li>connect</li>
+<li>write</li>
+<li>read</li>
+</ul>
+<ol start="2">
+<li>服务器端</li>
+</ol>
+<ul>
+<li>socket</li>
+<li>bind</li>
+<li>listen</li>
+<li>accept</li>
+<li>read</li>
+<li>write</li>
+</ul>
+<h1 id="Linux堆和栈的区别"><a href="#Linux堆和栈的区别" class="headerlink" title="Linux堆和栈的区别"></a>Linux堆和栈的区别</h1><ol>
+<li>栈区（stack），是由编译器自动分配释放，存放函数的参数值，局部变量的值等，局部变量的值等。其操作方式类似于数据结构中的栈。</li>
+<li>堆区（heap），一般由程序员分配释放，若程序员不释放，程序结束时可能有OS回收。注意它与数据结构中的堆是两回事，分配方式类似于链表</li>
+<li>因为栈是有编译器在需要的时候进行分配的，不需要时自动清除的变量存储区。</li>
+</ol>
+<p>堆和栈的主要区别：</p>
+<ul>
+<li>管理方式：栈是自动管理的，堆是人为申请和释放</li>
+<li>空间大小不同<br>  （1）栈是向低地址扩展的数据结构，是连续的地址空间<br>  （2）堆是是向高地址扩展的数据结构，是不连续的地址空间</li>
+<li>是否产生碎片：<br>  （1）栈是不存在此问题的。<br>  （2）堆易出现此问题。</li>
+<li>增长方向：<br>  栈是从高到低的，堆是从低到高的。</li>
+<li>分配方式：</li>
+<li>分配效率不同</li>
+</ul>
+<h1 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h1><ol>
+<li>进程是资源分配和调度的一个独立单元，而线程是cpu调度的基本单元。</li>
+<li>同一个进程中可以包括多个线程，并且线程共享整个的资源（寄存器，堆栈，上下文），一个进程至少有一个线程</li>
+<li>进程的创建调用fork或vfork，而线程的创建用pthread_create，进程结束后它拥有的所有线程都将销毁，而线程的技术不会影响同个进程中的其他线程的结束。</li>
+<li>进程有自己的独立地址空间，每启动一个进程，系统就会为它分配地址空间，建立数据表来维护代码段，堆栈段和数据段，这样的操作非常昂贵。而线程是共享进程中的数据，使用相同的地址空间，因此CPU切换一个线程的花费比进程小很多。创建线程的开销比进程小。</li>
+<li>进程间通信比线程间通信复杂。</li>
+<li>多进程程序比多线程程序稳定，多进程因为各自有独立的地址空间，不会互相影响。</li>
+</ol>
 
       
     </div>
@@ -478,7 +524,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-strcpy和memcpy"><span class="nav-number">1.</span> <span class="nav-text">1.strcpy和memcpy</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#strcpy和memcpy"><span class="nav-number">1.</span> <span class="nav-text">strcpy和memcpy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#信号量，信号，互斥锁的区别"><span class="nav-number">2.</span> <span class="nav-text">信号量，信号，互斥锁的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#共享内存的使用"><span class="nav-number">3.</span> <span class="nav-text">共享内存的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#socket函数"><span class="nav-number">4.</span> <span class="nav-text">socket函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux堆和栈的区别"><span class="nav-number">5.</span> <span class="nav-text">Linux堆和栈的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程和线程的区别"><span class="nav-number">6.</span> <span class="nav-text">进程和线程的区别</span></a></li></ol></div>
             
 
           </div>
