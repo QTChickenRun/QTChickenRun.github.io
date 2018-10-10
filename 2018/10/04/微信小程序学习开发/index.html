@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="ChickenRun">
 <meta property="og:description" content="#目录结构  app.jsApp函数用来注册一个小程序，接受object类型的参数，其中onLanuch()会在打开应用时执行。  object参数说明（1）onLaunch生命周期函数，监听小程序初始化。当小程序初始化完成时，会出发onLaunch(全局只触发一次)。（2）onShow生命周期函数，监听小程序显示，当小程序启动，或从后台进入前台显示，会出发onShow(3) onHide生命周期">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-05T02:38:51.924Z">
+<meta property="og:updated_time" content="2018-10-05T09:01:47.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信小程序学习开发">
 <meta name="twitter:description" content="#目录结构  app.jsApp函数用来注册一个小程序，接受object类型的参数，其中onLanuch()会在打开应用时执行。  object参数说明（1）onLaunch生命周期函数，监听小程序初始化。当小程序初始化完成时，会出发onLaunch(全局只触发一次)。（2）onShow生命周期函数，监听小程序显示，当小程序启动，或从后台进入前台显示，会出发onShow(3) onHide生命周期">
@@ -293,7 +293,7 @@
             
   			<span class="post-updated">
     			&nbsp; | &nbsp; 更新于
-    		    <time itemprop="dateUpdated" datetime="2018-10-04T19:38:51-07:00" content="2018-10-05">
+    		    <time itemprop="dateUpdated" datetime="2018-10-05T02:01:47-07:00" content="2018-10-05">
                 2018-10-05
                 </time>
   		  </span>
@@ -354,6 +354,18 @@
 <li>onUnload<br>  类型：Function<br>  描述：生命周期函数–监听页面卸载</li>
 <li>onPullDownRefresh<br>  类型：Function<br>  描述：生命周期函数–页面相关事件处理函数–监听用户下拉动作</li>
 <li>其他<br>  类型：Any<br>  描述：开发者可以添加任意的函数或数据到object参数中，用this可以访问</li>
+<li>data<br>  会以JSON的形式由逻辑层传至渲染层，所以其数据必须是可以转成JSON格式：字符串，数字，布尔值，对象，数组</li>
+<li>setData()<br>  接受一个对象，以key,value的形式表示将this.data中的key对应的值改变成value。<br>  其中key可以非常灵活，以数据路径的形式输出，如array[2].message, a.b.c.d, 并且不需要在this.data中预先定义。</li>
+</ul>
+<ol start="7">
+<li>页面的路由<br>路由是一个专业术语，页面路由可以简单的理解为页面切换<br>在小程序中所有页面的路由全部由框架进行管理，对于路由的触发方式以及页面生命周期函数如下</li>
+</ol>
+<ul>
+<li>路由方式：初始化<br>  触发时机：小程序打开的第一个页面<br>  路由后页面：onLoad,onShow<br>  路由前页面： </li>
+<li>路由方式：打开新页面<br>  触发时机：调用API wx.navigateTo或使用组件<navigator><br>  路由后页面：onLoad, onShow<br>  路由前页面：onHide</navigator></li>
+<li>页面重定向<br>  触发时机：调用API wx.redirectTo或使用组件<navigator><br>  路由后页面： onLoad, onShow<br>  路由前页面：onUnload</navigator></li>
+<li>页面返回<br>  触发时机：调用API wx.navigateBack或用户按左上角返回按钮<br>  路由后页面： onShow<br>  路由前页面： onUnload</li>
+<li>Tab切换<br>  触发时机： 多Tab模式下用户切换Tab<br>  路由后页面： 第一次onLoad, onShow;否则onShow<br>  路由前页面： onHide</li>
 </ul>
 
       
@@ -388,6 +400,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/09/内存知识学习/" rel="prev" title="内存知识学习">
+                内存知识学习 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -445,7 +461,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">ChickenRun</p>
-              <p class="site-description motion-element" itemprop="description">逆水行舟，不进则退 邮箱地址：jinqiting0713@qq.com</p>
+              <p class="site-description motion-element" itemprop="description">逆水行舟，不进则退 jinqiting0713@qq.com</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -455,7 +471,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
