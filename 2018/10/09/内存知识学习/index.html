@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="网址http://futuretech.blinkenlights.nl/misc/cpumemory.pdf https://lwn.net/Articles/250967/">
+<meta name="description" content="原文网址http://futuretech.blinkenlights.nl/misc/cpumemory.pdf https://lwn.net/Articles/250967/ 各章节翻译地址1、每个程序员都应该了解的内存知识【第一部分】https://blog.csdn.net/sun_hongtao/article/details/51398345 2、每个程序员都应该了解的 CPU 高速">
 <meta property="og:type" content="article">
 <meta property="og:title" content="内存知识学习">
 <meta property="og:url" content="http://chickenrun.top/2018/10/09/内存知识学习/index.html">
 <meta property="og:site_name" content="ChickenRun">
-<meta property="og:description" content="网址http://futuretech.blinkenlights.nl/misc/cpumemory.pdf https://lwn.net/Articles/250967/">
+<meta property="og:description" content="原文网址http://futuretech.blinkenlights.nl/misc/cpumemory.pdf https://lwn.net/Articles/250967/ 各章节翻译地址1、每个程序员都应该了解的内存知识【第一部分】https://blog.csdn.net/sun_hongtao/article/details/51398345 2、每个程序员都应该了解的 CPU 高速">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-10T14:33:51.349Z">
+<meta property="og:updated_time" content="2018-10-14T13:34:10.262Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内存知识学习">
-<meta name="twitter:description" content="网址http://futuretech.blinkenlights.nl/misc/cpumemory.pdf https://lwn.net/Articles/250967/">
+<meta name="twitter:description" content="原文网址http://futuretech.blinkenlights.nl/misc/cpumemory.pdf https://lwn.net/Articles/250967/ 各章节翻译地址1、每个程序员都应该了解的内存知识【第一部分】https://blog.csdn.net/sun_hongtao/article/details/51398345 2、每个程序员都应该了解的 CPU 高速">
 
 
 
@@ -293,8 +293,8 @@
             
   			<span class="post-updated">
     			&nbsp; | &nbsp; 更新于
-    		    <time itemprop="dateUpdated" datetime="2018-10-10T22:33:51+08:00" content="2018-10-10">
-                2018-10-10
+    		    <time itemprop="dateUpdated" datetime="2018-10-14T06:34:10-07:00" content="2018-10-14">
+                2018-10-14
                 </time>
   		  </span>
 		  
@@ -328,13 +328,22 @@
       
 
       
-        <p>网址<br><a href="http://futuretech.blinkenlights.nl/misc/cpumemory.pdf" target="_blank" rel="noopener">http://futuretech.blinkenlights.nl/misc/cpumemory.pdf</a></p>
+        <p>原文网址<br><a href="http://futuretech.blinkenlights.nl/misc/cpumemory.pdf" target="_blank" rel="noopener">http://futuretech.blinkenlights.nl/misc/cpumemory.pdf</a></p>
 <p><a href="https://lwn.net/Articles/250967/" target="_blank" rel="noopener">https://lwn.net/Articles/250967/</a></p>
+<p>各章节翻译地址<br>1、每个程序员都应该了解的内存知识【第一部分】<br><a href="https://blog.csdn.net/sun_hongtao/article/details/51398345" target="_blank" rel="noopener">https://blog.csdn.net/sun_hongtao/article/details/51398345</a></p>
+<p>2、每个程序员都应该了解的 CPU 高速缓存 英文原文：Memory part 2: CPU caches<br><a href="https://blog.csdn.net/yangxi_pekin/article/details/30073015" target="_blank" rel="noopener">https://blog.csdn.net/yangxi_pekin/article/details/30073015</a></p>
+<p>3、每个程序员都应该了解的“虚拟内存”知识(Memory part 3: Virtual Memory)<br><a href="https://blog.csdn.net/zhanglu0223/article/details/8746215" target="_blank" rel="noopener">https://blog.csdn.net/zhanglu0223/article/details/8746215</a></p>
 <a id="more"></a>
 <ol>
-<li>介绍<br>In the early days computers were much simpler. The various components of a system, such as the CPU, memory, mass storage, and network interfaces, were developed together and, as a result, were quite balanced in their performance. For example, the memory and network interfaces were not (much) faster than the CPU at providing data.<br>在早期，计算机是非常简单。 系统的各种组件（例如CPU，内存，大容量存储设备和网络接口）是一起开发的，因此在性能上非常均衡。 例如，在提供数据时，内存和网络接口并不比CPU快得多。</li>
+<li>介绍</li>
 </ol>
+<p>In the early days computers were much simpler. The various components of a system, such as the CPU, memory, mass storage, and network interfaces, were developed together and, as a result, were quite balanced in their performance. For example, the memory and network interfaces were not (much) faster than the CPU at providing data.<br>在早期，计算机是非常简单。 系统的各种组件（例如CPU，内存，大容量存储设备和网络接口）是一起开发的，因此在性能上非常均衡。 例如，在提供数据时，内存和网络接口并不比CPU快得多。</p>
 <p>This situation changed once the basic structure of computers stabilized and hardware developers concentrated on optimizing individual subsystems. Suddenly the performance of some components of the computer fell significantly behind and bottlenecks developed. This was especially true for mass storage and memory subsystems which, for cost reasons, improved more slowly relative to other components.<br>一旦计算机的基本架构稳定，并且硬件开发人员专注于优化各个子系统，这种情况就会得到改变。很快的，计算机部分组件的性能明显落后，并且出现了平静瓶颈。大容量存储设备和内存子系统表现更为明显，但由于成本原因，两者的改进速度较慢于其他组件。</p>
+<p>The slowness of mass storage has mostly been dealt with using software techniques: operating systems keep most often used (and most likely to be used) data in main memory, which can be accessed at a rate orders of magnitude faster than the hard disk. Cache storage was added to the storage devices themselves, which requires no changes in the operating system to increase performance. {Changes are needed, however, to guarantee data integrity when using storage device caches.} For the purposes of this paper, we will not go into more details of software optimizations for the mass storage access.</p>
+<p>大存储设备设备的处理速度缓慢问题，主要是通过软件技术来解决：操作系统保留经常使用（和最可能被使用）的数据在主内存中，其访问速度比硬盘高出几个数量级。缓存设备已经被添加到存储设备本身了，且不需要修改操作系统去提升它的性能。{然而为了保证数据的完整性，必须进行一些修改的}.出于本文的目的考虑，我们对此不会赘述。</p>
+<p>Unlike storage subsystems, removing the main memory as a bottleneck has proven much more difficult and almost all solutions require changes to the hardware. Today these changes mainly come in the following forms:</p>
+<p>RAM hardware design (speed and parallelism).<br>Memory controller designs.<br>CPU caches.<br>Direct memory access (DMA) for devices.</p>
+
 
       
     </div>
