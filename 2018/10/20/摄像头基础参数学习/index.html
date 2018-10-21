@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT,chickenrun" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="IP摄像头-萤石C2组成部分：（1）摄像镜头（2）人体感应PIR（3）麦克（4）告警指示灯（5）状态指示灯（6）网络指示灯（7）光敏电阻（8）红外灯（9）以太网口（10/100）（10）WPS/reset按键（11）speaker（12）MicroSD卡槽 Ambarella A5s系列视频压缩处理芯片系统框图 Ambarella A5s系列是一款专门应用于IP视频解决方案的Soc芯片，基于528">
+<meta property="og:type" content="article">
+<meta property="og:title" content="摄像头基础参数学习">
+<meta property="og:url" content="http://chickenrun.top/2018/10/20/摄像头基础参数学习/index.html">
+<meta property="og:site_name" content="ChickenRun">
+<meta property="og:description" content="IP摄像头-萤石C2组成部分：（1）摄像镜头（2）人体感应PIR（3）麦克（4）告警指示灯（5）状态指示灯（6）网络指示灯（7）光敏电阻（8）红外灯（9）以太网口（10/100）（10）WPS/reset按键（11）speaker（12）MicroSD卡槽 Ambarella A5s系列视频压缩处理芯片系统框图 Ambarella A5s系列是一款专门应用于IP视频解决方案的Soc芯片，基于528">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://chickenrun.top/2018/10/20/摄像头基础参数学习/C2硬件框架图.jpg">
+<meta property="og:updated_time" content="2018-10-21T15:16:11.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="摄像头基础参数学习">
+<meta name="twitter:description" content="IP摄像头-萤石C2组成部分：（1）摄像镜头（2）人体感应PIR（3）麦克（4）告警指示灯（5）状态指示灯（6）网络指示灯（7）光敏电阻（8）红外灯（9）以太网口（10/100）（10）WPS/reset按键（11）speaker（12）MicroSD卡槽 Ambarella A5s系列视频压缩处理芯片系统框图 Ambarella A5s系列是一款专门应用于IP视频解决方案的Soc芯片，基于528">
+<meta name="twitter:image" content="http://chickenrun.top/2018/10/20/摄像头基础参数学习/C2硬件框架图.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chickenrun.top/2018/10/20/摄像头基础参数学习/"/>
+
+
+
+
+
+  <title>摄像头基础参数学习 | ChickenRun</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ChickenRun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每天学习一点点 jinqiting0713@qq.com</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chickenrun.top/2018/10/20/摄像头基础参数学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChickenRun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChickenRun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">摄像头基础参数学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T05:52:45+08:00">
+                2018-10-21
+              </time>
+            
+
+            
+
+            
+            
+            
+  			<span class="post-updated">
+    			&nbsp; | &nbsp; 更新于
+    		    <time itemprop="dateUpdated" datetime="2018-10-21T23:16:11+08:00" content="2018-10-21">
+                2018-10-21
+                </time>
+  		  </span>
+		  
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>IP摄像头-萤石C2<br>组成部分：<br>（1）摄像镜头<br>（2）人体感应PIR<br>（3）麦克<br>（4）告警指示灯<br>（5）状态指示灯<br>（6）网络指示灯<br>（7）光敏电阻<br>（8）红外灯<br>（9）以太网口（10/100）<br>（10）WPS/reset按键<br>（11）speaker<br>（12）MicroSD卡槽</p>
+<p>Ambarella A5s系列视频压缩处理芯片系统框图<br></p>
+<p>Ambarella A5s系列是一款专门应用于IP视频解决方案的Soc芯片，基于528MHz的ARM1136J-S处理器，拥有高清H.264和MJPEG视频编码引擎，支持1080p@30fps的视频编码，并且集成了强大的图像处理单元。A5s 网络摄像机芯片拥有多通道视频编码器，支持高达14MP像素的视频编码，先进的3D MCTF 降噪技术和宽动态处理功能，支持多达四路的视频流，A5s丰富的IO口外设功能可以将eBOM缩减到最小，让产品适用于多样化形式，如自动对焦的枪型摄影机、微型球机以及袖珍无线摄像机等。</p>
+<p>C2硬件框架图<br><img src="/2018/10/20/摄像头基础参数学习/C2硬件框架图.jpg" title="Ambarella C2硬件框架图"></p>
+<p>视频编码算法</p>
+<p>A7L-DTS-041-1.0_AMBARELLA_A7LA30D_Datasheet<br>The A7LA30D system-on-chip(SOC)/DRAM automotive digital video(DV)products.Features like loop recording,emergency/event triggers,event recording / parking mode and motion detection are included to support automotive capture needs.</p>
+<p>A7LA30D片上系统（SOC）/ DRAM汽车数字视频（DV）产品。包括循环记录，紧急/事件触发，事件记录/停车模式和运动检测等功能，以支持汽车捕获需求。</p>
+<p>The A7LA30D combines an advanced dynamic-range engine, super-resolution over-sampling and ohter processing developments to produce bright, clear images adn capture hidden details(e.g., license plates)from footage shot in strong back light, tunnels and side shadows. Wide Dynamic Range(WDR) is supported to enhance image quality in challenging lighting conditions.</p>
+<p>A7LA30D结合了先进的动态范围引擎，超分辨率过采样和欧姆处理开发，可生成明亮，清晰的图像，并可捕获隐藏在背景光，隧道和侧面阴影中的镜头的隐藏细节（​​例如，牌照）。支持宽动态范围（WDR）以在具有挑战性的照明条件下提高图像质量。</p>
+<p>The 14 mm x 14 mm, 328 pin multi-chip package design integrates a DRAM chip with Ambarella professional encoding, low-power digital signal processing(DSP) technology, high-definition(HD) H.264/MJPEG video engine and a 550-MHz ARM11 applications processer.</p>
+<p>采用14 mm x 14 mm，328针多芯片封装设计，集成了DRAM芯片，Ambarella专业编码，低功耗数字信号处理（DSP）技术，高清（HD）H.264 / MJPEG视频引擎和550 -MHz ARM11应用程序处理器。</p>
+<p>The A7LA30D processor supports a rich peripherals interface and comes with a fully-feature Software Development Kit(SDK) that includes demo applicaitions, sources code, image tuning tools and APIs to support product differentiation and shorten time to market.</p>
+<p>A7LA30D处理​​器支持丰富的外设接口，并配有功能齐全的软件开发套件（SDK），其中包括演示应用，源代码，图像调整工具和API，以支持产品差异化并缩短产品上市时间。</p>
+<p>Feature List</p>
+<p>Feature on the chip include:</p>
+<ul>
+<li>Embedded ARM 1136J-S processor<br>  Clock frequency up to 550 MHz<br>  Memory Management Unit(MMU)<ul>
+<li>16 KB data cache</li>
+<li>16 KB instruction cache<br>Standard AMBA interface</li>
+</ul>
+</li>
+</ul>
+<p>嵌入式ARM 1136J-S处理器<br>    时钟频率高达550 MHz<br>    内存管理单元（MMU）</p>
+<pre><code> - 16 KB数据缓存
+ - 16 KB指令缓存
+标准AMBA接口
+</code></pre><ul>
+<li>Internal DRAM with a DDR3/L/U contoller<br>  Up to 336-MHz clock rate<br>  16-bit wide data bus<br>  DRAM size up to 1GB</li>
+</ul>
+<p>带DDR3 / L / U控制器的内置DRAM<br>    高达336 MHz的时钟频率<br>    16位宽数据总线<br>    DRAM大小高达1GB</p>
+<ul>
+<li>AHB bus DMA controler<br>  Four channels<br>  Memory-to-memory transfer including support for transfers including support for transfers between memory and peripherals<br>  Programmable transfer count up to 4MB<br>  DMA scatter/gather via chained descriptor list in memory with DMA control information source</li>
+</ul>
+<p>AHB总线DMA控制器<br>    四个渠道<br>    内存到内存的传输包括对传输的支持，包括支持内存和外设之间的传输<br>    可编程传输数量高达4MB<br>    DMA通过DMA控制信息源通过内存中的链接描述符列表进行分散/收集</p>
+<ul>
+<li>Dedicated DMA co-processor for graphics and image operations<br>  Offers linear copy, 2-D copy, composite, and alpah blend image operations<br>  Supports 4- to 32-bit pixel formats</li>
+</ul>
+<p>专用DMA协处理器，用于图形和图像操作<br>    提供线性复制，二维复制，复合和alpah混合图像操作<br>    支持4到32位像素格式</p>
+<ul>
+<li>Sensor/Video Input(VIN) interface<br>  Up to 5-Mpixel sensor resolutin<br>  Popular CMOS sensors<br>  CCIR.601 input with external sync signals<br>  CCIR.656 input with embedded sync codes including full-data-range support<br>  Parallel LVCMOS, serial LVDS and subLVDS sensors<br>  SLVS/MLVS(serial interface)sensors with high data rate and new synchronization schemes<br>  Two clocking options(PLL generated GCLk_Vin or SLVS bit clock)<br>  MIPI sensor input with up to four-lane CSI</li>
+</ul>
+<p>传感器/视频输入（VIN）接口<br>    高达500万像素的传感器分辨率<br>    流行的CMOS传感器<br>    CCIR.601输入带有外部同步信号<br>    带有嵌入式同步代码的CCIR.656输入，包括全数据范围支持<br>    并行LVCMOS，串行LVDS和subLVDS传感器<br>    具有高数据速率和新同步方案的SLVS / MLVS（串行接口）传感器<br>    两个时钟选项（PLL生成GCLk_Vin或SLVS位时钟）<br>    MIPI传感器输入，最多四通道CSI</p>
+<ul>
+<li>Video Output(VOUT)interface<br>  Two logical channels to drive three video output ports<pre><code>One logical channel drives HDMi or analog
+One logical channel drives digital
+</code></pre>  Built-in one channel video DAC for 480i/576i composite output<br>  Popular LCD panel controllers (RGB mode)<br>  YUV/RGB output with external sync signals(16-bit or 24-bit mode)<br>  CCIR656 embedded sync YUV output (8-bit or 16-bit mode)<br>  HDMi output with CEC</li>
+</ul>
+<p>视频输出（VOUT）接口<br>    两个逻辑通道可驱动三个视频输出端口<br>        一个逻辑通道驱动HDMi或模拟<br>        一个逻辑通道驱动数字<br>    内置单通道视频DAC，用于480i / 576i复合输出<br>    流行的LCD面板控制器（RGB模式）<br>    带外部同步信号的YUV / RGB输出（16位或24位模式）<br>    CCIR656嵌入式同步YUV输出（8位或16位模式）<br>    带有CEC的HDMi输出</p>
+<ul>
+<li><p>High performance video/still pipeline<br>  Key Automotive Features</p>
+<pre><code>Continuous looping, motion detection, event recording / parking mode and event-based / emergency video
+Advanced automotive dynamic range engine with local exposure, highlight and tone adjustment
+Super night vision with super-resolution oversampling, 3D noise filter and dynamic tone mapping
+Automotive smart auto exposure(AE) with scene detection, object detection and dynamic AE
+</code></pre><p>  连续循环，运动检测，事件记录/停车模式和基于事件/紧急视频</p>
+<pre><code>先进的汽车动态范围引擎，具有局部曝光，高光和色调调节
+超级夜视，具有超分辨率过采样，3D噪声滤波器和动态色调映射
+具有场景检测，物体检测和动态AE的汽车智能自动曝光（AE）
+</code></pre><p>  Video Encoding</p>
+<pre><code>Broadcast quality H.264 full high definition (HD) video encoding and decoding 
+H.264 encoding up to 1920*1080p30 resolution
+A full range of encoding formats including aspect ratio, scan type and frame rate
+Simultaneous still capture during video encode(Picture in Video or PIV, resolution is process-dependent)
+Slow shutter support for low light conditions
+Video encode pause / resume
+Endless video encoding with seamless file splitting
+Video with embedded GPS(configurable sampling period)
+YUV preview buffer post-processing
+Video with embedded thumbnails(configure size and number)
+Smart VBR control
+Encoding with simultaneous LCD output
+Pre-encoding
+Data/time stamp
+</code></pre><p>  广播质量H.264全高清（HD）视频编码和解码</p>
+<pre><code>H.264编码分辨率高达1920 * 1080p30
+全系列编码格式，包括宽高比，扫描类型和帧速率
+在视频编码期间同时仍然捕获（图片视频或PIV，分辨率取决于过程）
+低速快门支持，适用于低光照条件
+视频编码暂停/恢复
+无缝视频编码与无缝文件分割
+嵌入式GPS视频（可配置采样周期）
+YUV预览缓冲区后处理
+嵌入缩略图的视频（配置大小和数量）
+智能VBR控制
+同时LCD输出编码
+前置编码
+数据/时间戳
+</code></pre><p>  Still Capture</p>
+<pre><code>Low / Median / High iSO still capture 
+Low power / low delay photo preview
+Slow shutter and mechanical shutter support
+High speed burst and continuous capture
+Pre-caputre
+JPEG bit rate control(BRC)
+RAW/YUV post processing plug-in for custom still functions
+Date/time stamp
+</code></pre><p>  仍然捕获</p>
+<pre><code>低/中/高iSO仍然捕获
+低功耗/低延迟照片预览
+慢速快门和机械快门支持
+高速突发和连续捕获
+预caputre
+JPEG比特率控制（BRC）
+用于自定义静止功能的RAW / YUV后处理插件
+日期/时间
+</code></pre><p>  Image / Video Processing</p>
+<pre><code>Motion compendsated temporal filtering(MCTF) 3D noise reduction
+Dynamic tone curve mapping
+Lens geometric distortion correction(warp)
+Chromatic aberration correction
+Digital zoom and sensor high resolutin(HR) zoom
+Electronic image Stabilization (EiS) with rolling shutter correction
+Black level correction
+Static and dynamic bad pixel correction
+Vignette compensation
+Automatic white balance(AWB) and automatic exposure(AE)
+Digital gain
+Local exposure correction
+Sharpening
+</code></pre><p>  图像/视频处理</p>
+<pre><code>运动竞争时间滤波（MCTF）3D降噪
+动态色调曲线映射
+镜头几何失真校正（扭曲）
+色差校正
+数码变焦和传感器高分辨率（HR）变焦
+带卷帘快门校正的电子图像稳定（EiS）
+黑电平校正
+静态和动态坏像素校正
+小插图补偿
+自动白色
+</code></pre><p>  Calibration support<br>  Formats</p>
+<pre><code>Video: H.264 High Profile Level 4.2
+Audio: AAC(Two-channel LC, HEAAC, HEAAC v2), ADPCM / LPCM / PCM
+Video file: MP4, MOV, AVi, TS
+Photo file: JPG
+</code></pre><p>  格式</p>
+<pre><code>视频：H.264 High Profile Level 4.2
+音频：AAC（双通道LC，HEAAC，HEAAC v2），ADPCM / LPCM / PCM
+视频文件：MP4，MOV，AVi，TS
+照片文件：JPG
+</code></pre><p>  Thumbnail Browsing</p>
+<pre><code>Multi-resolution photo thumbnails
+Animated video thumbnail
+Luma fading
+Scrolling, Cropping and Blending
+</code></pre><p>  缩略图浏览</p>
+<pre><code>多分辨率照片缩略图
+动画视频缩略图
+露马褪色
+滚动，裁剪和混合
+</code></pre><p>  Video / Still Playback</p>
+<pre><code>Normal play / pause / resume
+Fast forward / rewind (up to 64x) 
+Slow forward / rewind (down to 1/64x)
+Step forward / rewind
+Time search
+Fade control
+</code></pre><p>  视频/静态播放</p>
+<pre><code>正常播放/暂停/恢复
+快进/快退（最高64x）
+慢进/快退（低至1 / 64x）
+前进/后退
+时间搜索
+淡化控制
+</code></pre><p>  Post Processing</p>
+<pre><code>Video editing functions such as divide, crop, partial delete and merge
+Flexible OSD with 8- and 16-bit options
+</code></pre><p>  后期处理</p>
+<pre><code>视频编辑功能，如分割，裁剪，部分删除和合并
+灵活的OSD，8位和16位选项
+</code></pre><p>  I2S digital audio interface(stereo)</p>
+<pre><code>Audio encoding / decoding
+AAC(two-channedl) and AC3 (two-channel) encode / decode
+MP3 decode
+</code></pre><p>  I2S数字音频接口（立体声）</p>
+<pre><code>音频编码/解码
+AAC（双通道）和AC3（双通道）编码/解码
+MP3解码
+</code></pre><p>  USB 2.0 device interface</p>
+<pre><code>Built-in transceiver
+PictBridge compliant(with third party software license)
+</code></pre><p>  USB 2.0设备接口</p>
+<pre><code>内置收发器
+兼容PictBridge（带第三方软件许可证
+</code></pre><p>  Flexible Storage Media Input / Output(SMIO) interface</p>
+<pre><code>Sony Memory Stick/MS-Pro controller (contact Ambarella for more information)
+    NAND Flash controller
+    Support for booting for nAnD flash device
+    8-bit flash chip data bus
+    Support for up to 1-GB devices
+    Support for 512-B and 2-KB page sizes
+    ECC hardware support
+    Support for command confirmation
+
+索尼记忆棒/ MS-Pro控制器（联系Ambarella了解更多信息）
+    NAND闪存控制器
+    支持nAnD闪存设备的启动
+    8位闪存芯片数据总线
+    支持最高1 GB的设备
+    支持512-B和2-KB页面大小
+    ECC硬件支持
+    支持命令确认
+
+Two SD/SDHC/SDXC/SDiO/MMC/eMMC memory Card controllers
+    SD Host Controller Standard Specification Darft Version 1.0
+    SDiO Card Specification Version 1.0
+    SD Memory Card Security Specification Version 1.01
+    SDXC UHS-1 memory cards
+    SDXC DDR mode
+    MMC Specification Version 3.31 and 4.0
+    eMMC Specificaiton Version 4.4
+    Independent operation of SD and SDIO functionality
+    One-bit, four-bit and eight-bit SD modes
+    Multi Media Card(MMC interrupt mode
+    Read and write up to 80 Mbps using four parallel data line(SD4-bit mode)
+    Up tp 100 Mbps data rate using 8-bit parallel data lines(SD8-bit mode)
+    Maximum performance depends on card performance and board layout
+    Perform Cyclic Redundancy Check CRC7 for command and CRC 16 data integrity
+    Support Error Correction Code(EEC) MMC 4.0 cards
+
+两个SD / SDHC / SDXC / SDiO / MMC / eMMC存储卡控制器
+    SD主机控制器标准规范Darft版本1.0
+    SDiO卡规范版本1.0
+    SD存储卡安全规范版本1.01
+    SDXC UHS-1存储卡
+    SDXC DDR模式
+    MMC规范版本3.31和4.0
+    eMMC规范4.4版
+    SD和SDIO功能的独立操作
+    一位，四位和八位SD模式
+    多媒体卡（MMC中断模式
+    使用四条并行数据线（SD4位模式）读写高达80 Mbps
+    使用8位并行数据线（SD8位模式）提高tp 100 Mbps数据速率
+    最高性能取决于卡性能和电路板布局
+    执行循环冗余校验CRC7以获得命令和CRC 16数据完整性
+    支持纠错码（EEC）MMC 4.0卡
+</code></pre><p>  Mutilple boot options</p>
+<pre><code>Boot from eMMC cards
+NAND boot
+USB initiated slave mode boot
+</code></pre><p>  多个启动选项</p>
+<pre><code>从eMMC卡启动
+NAND启动
+USB启动的从模式启动
+</code></pre></li>
+</ul>
+<p>Vector interrupt controller (two instances) including ViC CPU-offload functionality<br>Two SSI / SPI controller interfaces<br>    One SSI / SPI master with up to six slave devices<br>    One dedicated SSI / SPI slave port to connect to an external system master<br>Two-wire serial interface(IDC) driving three external interface using an internal mux<br>Two UART interfaces including one interface that supports flow control<br>InfraRed remote receive interface which supports most popular protocols<br>89 General Purpose input/Output(GPiO) pins with indiviual pull up / down control<br>ADC (eight channels) high / low threshold interrupt generation and 12-bit resolution<br>Built-in power controller for power-up/down sequencing<br>Real Time Clock(RTC)<br>interval timing with eight general purpose timers configurable as external event counters<br>Watchdog timer(one)<br>Stepper motor interface(thress sets) with Micro-Stepper interface<br>Five Pulse Width Modulators (PWM)<br>General JTAG interface for debugging (one)<br>328-pin, multi-component FBGA package with internal DRAM, 14 mm X 14 mm<br>Operating temperature from 0 °C to 70 °C</p>
+<p>矢量中断控制器（两个实例），包括ViC CPU卸载功能<br>两个SSI / SPI控制器接口<br>    一个SSI / SPI主站，最多有六个从器件<br>    一个专用的SSI / SPI从端口，用于连接外部系统主站<br>双线串行接口（IDC）使用内部多路复用器驱动三个外部接口<br>两个UART接口，包括一个支持流量控制的接口<br>InfraRed远程接收接口，支持大多数流行的协议<br>89个通用输入/输出（GPiO）引脚，具有单独的上拉/下拉控制<br>ADC（8通道）高/低阈值中断产生和12位分辨率<br>内置电源控制器，用于上电/下电排序<br>实时时钟（RTC）<br>具有8个通用定时器的间隔定时可配置为外部事件计数器<br>看门狗定时器（一个）<br>具有Micro-Stepper接口的步进电机接口（thress sets）<br>五个脉冲宽度调制器（PWM）<br>用于调试的通用JTAG接口（一个）<br>328引脚，多组件FBGA封装，内置DRAM，14 mm X 14 mm<br>工作温度为0°C至70°C</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/09/内存知识学习/" rel="next" title="内存知识学习">
+                <i class="fa fa-chevron-left"></i> 内存知识学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ChickenRun</p>
+              <p class="site-description motion-element" itemprop="description">逆水行舟，不进则退 jinqiting0713@qq.com</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">true</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
